@@ -1,0 +1,15 @@
+node_modules/
+dist/
+coverage/
+.env
+.env.*
+!.env.example
+*.log
+backend/backups/*
+!backend/backups/.gitkeep
+.DS_Store
+Thumbs.db
+backend/data/
+playwright-report/
+test-results/
+*.pem

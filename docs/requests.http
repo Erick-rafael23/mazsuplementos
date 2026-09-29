@@ -1,0 +1,81 @@
+### Sustituye valores localmente. No publiques secretos.
+@baseUrl = http://127.0.0.1:3000/api
+@token = PEGA_EL_TOKEN
+@usuarioId = 0
+@productoId = 0
+
+### Estado
+GET {{baseUrl}}/health
+
+### Login
+POST {{baseUrl}}/auth/login
+Content-Type: application/json
+
+{"correo":"TU_CORREO","password":"TU_CONTRASEÑA"}
+
+### Sesión
+GET {{baseUrl}}/auth/me
+Authorization: Bearer {{token}}
+
+### Usuarios: administrador o auditor
+GET {{baseUrl}}/usuarios
+Authorization: Bearer {{token}}
+
+### Crear usuario: administrador
+POST {{baseUrl}}/usuarios
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{"nombre":"Capturista de prueba","correo":"capturista-prueba@example.com","password":"ClaveDePrueba2026!","rol":"capturista","activo":true}
+
+### Ver usuario; usa id del POST
+GET {{baseUrl}}/usuarios/{{usuarioId}}
+Authorization: Bearer {{token}}
+
+### Editar usuario
+PUT {{baseUrl}}/usuarios/{{usuarioId}}
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{"nombre":"Capturista actualizado","correo":"capturista-prueba@example.com","rol":"capturista","activo":true}
+
+### Eliminar solo usuario de prueba
+DELETE {{baseUrl}}/usuarios/{{usuarioId}}
+Authorization: Bearer {{token}}
+
+### Catálogo
+GET {{baseUrl}}/productos
+Authorization: Bearer {{token}}
+
+### Crear suplemento: capturista
+POST {{baseUrl}}/productos
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{"nombre":"Creatina de prueba","descripcion":"300 g","tipo":"producto","precio":449,"activo":true}
+
+### Consultar suplemento; usa id del POST
+GET {{baseUrl}}/productos/{{productoId}}
+Authorization: Bearer {{token}}
+
+### Editar suplemento
+PUT {{baseUrl}}/productos/{{productoId}}
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{"nombre":"Creatina de prueba","descripcion":"300 g","tipo":"producto","precio":429,"activo":true}
+
+### Eliminar solo suplemento de prueba
+DELETE {{baseUrl}}/productos/{{productoId}}
+Authorization: Bearer {{token}}
+
+### Crear respaldo: administrador
+POST {{baseUrl}}/backups
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{}
+
+### Historial de respaldos
+GET {{baseUrl}}/backups
+Authorization: Bearer {{token}}
